@@ -31,6 +31,17 @@ class BinarySearchTrees:
                 else:
                     current_node = current_node.right
 
+    def contain(self, val):
+        current_node = self.root
+        while current_node is not None:
+            if current_node.value == val:
+                return True
+            elif current_node.value < val:
+                current_node = current_node.right
+            else:
+                current_node = current_node.left
+
+        return False
 
 my_tree = BinarySearchTrees()
 my_tree.insert(50)
@@ -41,3 +52,13 @@ my_tree.insert(70)
 my_tree.insert(80)
 
 print(my_tree.root.right.right.value)
+
+if my_tree.contain(80):
+    print("80 is in the tree")
+else:
+    print("80 is not in the tree")
+
+if my_tree.contain(90):
+    print("90 is in the tree")
+else:
+    print("90 is not in the tree")
