@@ -84,3 +84,37 @@ def merger_sort(array):
 my_array = [10,39,40,50,14,90]
 insert_sort(my_array)
 print(my_array)
+
+def swap(array, index1, index2):
+    tmp = array[index1]
+    array[index1] = array[index2]
+    array[index2] = tmp
+
+
+def pivot(array, pivot_index, end_index):
+    swap_index = pivot_index
+
+    for i in range(pivot_index + 1, end_index +1):
+        if array[i] < array[pivot_index]:
+            swap_index += 1
+            swap(array, swap_index, i)
+    swap(array, pivot_index, swap_index)
+
+    return swap_index
+
+
+def quick_sort_helper(arr, left, right):
+    if left < right:
+        pivot_index = pivot(arr, left, right)
+        quick_sort_helper(arr, left, pivot_index -1)
+        quick_sort_helper(arr, pivot_index + 1, right)
+    return arr
+
+
+def quick_sort(array):
+    return quick_sort_helper(array, 0, len(array) -1)
+
+
+q_array = [5,8,2,3]
+quick_sort(q_array)
+print(q_array)
