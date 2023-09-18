@@ -76,6 +76,34 @@ class BinarySearchTrees:
     def r_insert(self, val):
         return self.__r_insert(self.root, val)
 
+    def breadth_first_search(self):
+        queue = []
+        queue.append(self.root)
+        results = []
+
+        while len(queue) > 0:
+            current_node = queue.pop()
+            results.append(current_node.value)
+            if current_node.left is not None:
+                queue.append(current_node.left)
+            if current_node.right is not None:
+                queue.append(current_node.right)
+
+        return results
+
+
+    def deep_first_search(self):
+        results = []
+        def traverse(current_node):
+            results.append(current_node.value)
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
+
+        traverse(self.root)
+        return results
+
 
 my_tree = BinarySearchTrees()
 my_tree.insert(50)
@@ -126,3 +154,8 @@ if my_tree.r_contain(95):
     print("95 is in the tree")
 else:
     print("95 is not in the tree")
+
+breadths_view = my_tree.breadth_first_search()
+print(breadths_view)
+deep_view = my_tree.deep_first_search()
+print(deep_view)
